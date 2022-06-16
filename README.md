@@ -1,6 +1,6 @@
 # Upgradeable_Drone_Contract_Using_Transparent-Proxy_Pattern
 
-##steps
+## steps:
 
 1.npx hardhat run --network rinkeby scripts/deploy.js 
 
