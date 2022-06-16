@@ -2,7 +2,7 @@
 
 ## steps:
 
-1.npx hardhat run --network rinkeby scripts/deploy.js 
+1. npx hardhat run --network rinkeby scripts/deploy.js 
 
 2. npx hardhat run --network rinkeby scripts/upgrade.js
 
