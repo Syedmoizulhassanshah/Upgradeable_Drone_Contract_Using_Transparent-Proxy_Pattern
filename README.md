@@ -1,33 +1,48 @@
 # Upgradeable_Drone_Contract_Using_Transparent-Proxy_Pattern
 
-## Steps:
+**Note:** The instructions given below are for Ubuntu 20.04 LTS (users only).
 
-1. npx hardhat run --network rinkeby scripts/deploy.js 
+## Steps to run the project
 
-2. npx hardhat run --network rinkeby scripts/upgrade.js
+1. Clone the repository.
+2. Install the dependencies using the following command: `npm i`.
+3. Create a `.env` file in the project folder and add your `PRIVATEKEY`,`infuraID` **(RINKEBY_RPC_URL)** and `etherscan-API-key` in it in the following format:
+   
+  ``` 
+  RINKEBY_RPC_URL='https://rinkeby.infura.io/v3/1d88d32449d64d7a94c6b55de216042e'
+  PRIVATE_KEY=''
+  ETHERSCAN_API_KEY= '8WKUUZ72WVPJ78UBI4TMHWT61UVA5FYI53'
 
-### commands to check and read drone-contract v1
+   ```
 
-1. const DroneContract = await ethers.getContractFactory("DroneContract")
-2. const DroneContractProxy = await DroneContract.attach("0x628A98Ec398867b111D02717A78355e3A6B0E56e")
-3. (await DroneContractProxy.retrieve()).toString()
+4. Run the deployment script **deploy.js**  present in the scripts folder, using the following command:  
+   `npx hardhat run --network rinkeby scripts/deploy.js` to deploy the **Drone_Contract**.
+5. Now verify the deployed **Drone_Contract** on rinkeby testnet using the following command: 
+   `npx hardhat verify --network rinkeby {implementation  contract-address of Drone_Contract}`
+6. We now change proxyAddress in **upgrade.js** with the new **DroneContractProxy address** present in the `const proxyAddress =  '0x1397cbC428E0Bfc599eFB31640F909C12144CDB5';`
+7. Once the **Drone_Contract** is deployed and verified on rinkeby testnet, we now need to deploy the upgraded implementation of Drone-Contract that
+   is **Drone_ContractV2** by running the deployment script **upgrade.js** present in the scripts folder, using the following command:
+   `npx hardhat run --network rinkeby scripts/upgrade.js` to deploy the **Drone_ContractV2**.
+8. Now verify the deployed  **Drone_Contract** on rinkeby testnet using the following command:
+   `npx hardhat verify --network rinkeby {implementation  contract-address of Drone_ContractV2}`
+9. Once verified, your Etherscan transactions will look like this:
+    ![Etherscan deployment](https://user-images.githubusercontent.com/52605353/174560518-1739fe01-5a13-48a6-a3f0-a17f0040ac59.png)
+   
+   In the proxy pattern, everything is stored and executed in the context of the proxy contract.So in-order to interact with the **Drone_Contract**,
+   you should do it via the proxy contract. To do that, first we need to inform Etherscan that the deployed contract is actually a proxy.
+   In the `Contract` tab of the proxy contract, there’ll be a small dropdown above the source code section (on the right side).
+     
+   ![Contract Tab](https://user-images.githubusercontent.com/52605353/174563888-1fef79b8-cefe-4f58-bde1-cc85ef9526e9.png)
+  
+   Choose **“Is this a proxy?”** option from the dropdown and then **Verify.**
 
-### commands to check,read and increment drone-contract v1 to drone-contract v2
+   ![Is this a proxy?](https://user-images.githubusercontent.com/52605353/174564215-24b2abef-925c-42da-a0a8-bca0ae0dcb64.png)
 
-1.  const DroneContractV2 = await ethers.getContractFactory("DroneContractV2")
-2.  const DroneContractV2Proxy = await DroneContractV2.attach("0x628A98Ec398867b111D02717A78355e3A6B0E56e")
-3.  (await DroneContractV2Proxy.retrieve()).toString()
-4.  await DroneContractV2Proxy.increment()
-5.  (await DroneContractV2Proxy.retrieve()).toString()
+    You can see **Read as Proxy** and **Write as Proxy** options in the `Contract` tab of the proxy contract.
+    
+   ![pic 4](https://user-images.githubusercontent.com/52605353/174565105-465a1bfa-905e-4b79-ad19-a24a624e40ae.png)
 
-
-### Deployed Contract addresses
-
-1. https://rinkeby.etherscan.io/address/0x11da856b22e340baa14e1e7b2bda4f36d2ab4b62#code **(Drone Contract v1)**
-2. https://rinkeby.etherscan.io/address/0xcc507858d574bcf766fdf9a26aad247422327038#code **(Proxy Admin)**
-3. https://rinkeby.etherscan.io/address/0x916843a8707002a022604b47b02f8eb7c95490ed#readProxyContract **(Proxy-TransparentUpgradeableProxy)**
-4. https://rinkeby.etherscan.io/address/0xb8e05798ae0e66a6c4f0d30c2d4c7ef3737b1029#code **(Drone Contract v2)**
+   Now you can interact with the **Drone_Contract** and **Drone_ContractV2** contracts  using those options!
 
 
-
-
+   
