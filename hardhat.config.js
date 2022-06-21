@@ -1,7 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 require('@openzeppelin/hardhat-upgrades');
-// require('@nomiclabs/hardhat-etherscan')
+require('@nomiclabs/hardhat-etherscan')
 require('dotenv').config();
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -41,9 +41,8 @@ module.exports = {
         runs: 200
       }
     }
-   }
-  //,
-  // etherscan:{
-  //           apiKey:ETHERSCAN_API_KEY
-  // },
+   },
+   etherscan:{
+             apiKey:ETHERSCAN_API_KEY
+   },
 };

@@ -1,6 +1,6 @@
 // scripts/prepare_upgrade.js
 async function main() {
-    const proxyAddress = '0x628A98Ec398867b111D02717A78355e3A6B0E56e';
+    const proxyAddress = '0x9434F19aE3CD65caB66c85F887e4af82ac0A76fF';
    
     const DroneContractV2 = await ethers.getContractFactory("DroneContractV2");
     console.log("Preparing upgrade...");
