@@ -501,13 +501,13 @@ contract DroneContract is
     event ValueChanged(uint256 newValue);
 
     // Stores a new value in the contract
-    function store_value_TPV1(uint256 newValue) public {
+    function store_value_TPPV1(uint256 newValue) public {
         value = newValue;
         //   emit ValueChanged(newValue);
     }
 
     // Reads the last stored value
-    function retrieve_value_TPV1() public view returns (uint256) {
+    function retrieve_value_TPPV1() public view returns (uint256) {
         return value;
     }
 }

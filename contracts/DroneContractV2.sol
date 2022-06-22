@@ -494,18 +494,18 @@ contract DroneContractV2 is
     event ValueChanged(uint256 newValue);
 
     // Stores a new value in the contract
-    function store_value_TPV2(uint256 newValue) public {
+    function store_value_TPPV2(uint256 newValue) public {
         value = newValue;
         emit ValueChanged(newValue);
     }
 
     // Reads the last stored value
-    function retrieve_value_TPV2() public view returns (uint256) {
+    function retrieve_value_TPPV2() public view returns (uint256) {
         return value;
     }
 
     // Increments the stored value by 1
-    function increment_value_TPV2() public {
+    function increment_value_TPPV2() public {
         value = value + 1;
         emit ValueChanged(value);
     }
