@@ -16,19 +16,13 @@
    ```
 
 4. Run the deployment script **deploy.js**  present in the scripts folder, using the following command:  
-   `npx hardhat run --network rinkeby scripts/deploy.js` to deploy the **Drone_Contract**.
-5. Now verify the deployed **Drone_Contract** on rinkeby testnet using the following command: 
+   `npx hardhat run --network rinkeby scripts/deploy.js` to deploy the **DroneContract**.
+5. Now verify the deployed **DroneContract** on rinkeby testnet using the following command: 
    `npx hardhat verify --network rinkeby {implementation  contract-address of Drone_Contract}`
-6. We now change proxyAddress in **upgrade.js** with the new **DroneContractProxy address** present in the `const proxyAddress =  '0x1397cbC428E0Bfc599eFB31640F909C12144CDB5';`
-7. Once the **Drone_Contract** is deployed and verified on rinkeby testnet, we now need to deploy the upgraded implementation of Drone-Contract that
-   is **Drone_ContractV2** by running the deployment script **upgrade.js** present in the scripts folder, using the following command:
-   `npx hardhat run --network rinkeby scripts/upgrade.js` to deploy the **Drone_ContractV2**.
-8. Now verify the deployed  **Drone_Contract** on rinkeby testnet using the following command:
-   `npx hardhat verify --network rinkeby {implementation  contract-address of Drone_ContractV2}`
-9. Once verified, your Etherscan transactions will look like this:
+6. Once verified, your Etherscan transactions will look like this:
     ![Etherscan deployment](https://user-images.githubusercontent.com/52605353/174560518-1739fe01-5a13-48a6-a3f0-a17f0040ac59.png)
    
-   In the proxy pattern, everything is stored and executed in the context of the proxy contract.So in-order to interact with the **Drone_Contract**,
+   In the proxy pattern, everything is stored and executed in the context of the proxy contract.So in-order to interact with the **DroneContract**,
    you should do it via the proxy contract. To do that, first we need to inform Etherscan that the deployed contract is actually a proxy.
    In the `Contract` tab of the proxy contract, there’ll be a small dropdown above the source code section (on the right side).
      
@@ -42,7 +36,16 @@
     
    ![pic 4](https://user-images.githubusercontent.com/52605353/174565105-465a1bfa-905e-4b79-ad19-a24a624e40ae.png)
 
-   Now you can interact with the **Drone_Contract** and **Drone_ContractV2** contracts  using those options!
+   Now you can interact with the **DroneContract** contract  using those options!   
+
+7. We now change proxyAddress in **upgrade.js** with the new **DroneContractV2Proxy address** present in the code line `const proxyAddress =  '0x1397cbC428E0Bfc599eFB31640F909C12144CDB5';`
+8. Once the **DroneContract** is deployed and verified on rinkeby testnet, we now need to deploy the upgraded implementation of Drone-Contract that
+   is **DroneContractV2** by running the deployment script **upgrade.js** present in the scripts folder, using the following command:
+   `npx hardhat run --network rinkeby scripts/upgrade.js` to deploy the **DroneContractV2**.
+9. Now verify the deployed  **DroneContractV2** on rinkeby testnet using the following command:
+   `npx hardhat verify --network rinkeby {implementation  contract-address of Drone_ContractV2}`
+10. Once **DroneContractV2** verified on Etherscan, then perform the same procedure mentioned in the **step:6**.
+
 
 
    
